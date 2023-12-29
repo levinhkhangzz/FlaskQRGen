@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "app/app.py", "use": "@vercel/python" }
+  ],
+  "routes": [
+    { "src": "/generate_qr", "dest": "/app/app.py" },
+    { "src": "/download_qr", "dest": "/app/app.py" },
+    { "src": "/(.*)", "dest": "/app/app.py" }
+  ],
+  "env": {
+    "PYTHONUNBUFFERED": "true",
+    "FLASK_ENV": "production"
+  },
+  "functions": {
+    "api/index.py": {
+      "runtime": "vercel-python@0.1.1",
+      "includeFiles": ["app/templates/**", "requirements.txt"]
+    }
+  }
+}
